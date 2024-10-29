@@ -1,5 +1,12 @@
+import { useAuth } from "../../../app/hooks/useAuth"
+
 export function Dashboard() {
+  const {signout} = useAuth()
+
     return (
-        <h1>Register Page</h1>
+        <>
+        
+          <button onClick={signout}>sair</button>
+        </>
     )
 }
