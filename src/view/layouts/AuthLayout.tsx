@@ -7,7 +7,7 @@ export function AuthLayout() {
   return (
     <div className="flex w-full h-full">
       <div className="w-full h-full flex items-center justify-center flex-col gap-16 lg:w-1/2">
-        <Logo className="w-[104.32px] text-gray-500 " />
+        <Logo width={104.32} className="w-[104.32px] text-gray-500 " />
 
         <div className="w-full max-w-[504px] px-8">
           <Outlet />
@@ -20,8 +20,8 @@ export function AuthLayout() {
           alt=""
         />
 
-        <div className="max-w-[656px]  bg-white p-10 absolute rounded-b-[32px] bottom-8 flex flex-col gap-6 text-red-500">
-          <Logo className="text-teal-900 w-[138.42px]" />
+        <div className="max-w-[656px] mx-8  bg-white p-10 absolute rounded-b-[32px] bottom-8 flex flex-col gap-6 text-red-500">
+          <Logo width={138.42} className="text-teal-900 w-[138.42px]" />
           <p className="text-gray-700 font-medium text-xl">
             Gerencie suas finanças pessoais de uma forma simples com o fincheck,
             e o melhor, totalmente de graça!
