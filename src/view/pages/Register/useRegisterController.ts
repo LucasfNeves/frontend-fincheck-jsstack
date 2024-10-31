@@ -44,7 +44,7 @@ export function useRegisterController() {
       signin(accessToken)
     } catch (error) {
       console.log(error);
-      toast.error('Deu ruim mané!')
+      toast.error('Erro ao cadastrar!')
     }
   });
 
