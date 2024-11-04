@@ -1,13 +1,15 @@
-import { EyeIcon } from "../../../components/icons/EyeIcon";
+import { EyeIcon } from "../../../../components/icons/EyeIcon";
 import { AccountCard } from "./AccountCard";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { AccountsSliderNavigation } from "./AccountsSliderNavigation";
 import { useRef } from "react";
-import { Swiper as SwiperTypes} from "swiper/types";
-
+import { Swiper as SwiperTypes } from "swiper/types";
+import { useAccountController } from "./useAccountsController";
 
 export function Accounts() {
+  const { sliderState, setSliderState, windowWidth } = useAccountController();
+
   const swiperRef = useRef<SwiperTypes | null>(null);
 
   return (
@@ -26,27 +28,34 @@ export function Accounts() {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col justify-end gap-4">
+      <div className="flex-1 flex flex-col justify-end gap-4 mt-10 md:mt-0">
         <div className=" flex items-center justify-between">
           <strong className="text-white tracking-[-1px] text-lg">
             Minhas contas
           </strong>
 
-          <AccountsSliderNavigation swiperRef={swiperRef}/>
-      </div>
-
-          
+          <AccountsSliderNavigation
+            swiperRef={swiperRef}
+            isBeginning={sliderState.isBeginning}
+            isEnd={sliderState.isEnd}
+          />
+        </div>
 
         <div>
           <Swiper
             spaceBetween={16}
-            slidesPerView={2.1}
+            slidesPerView={windowWidth >= 500 ? 2.1: 1.2}
             onSwiper={(swiper) => {
               swiperRef.current = swiper; // Associa a instância do Swiper à referência
             }}
+            onSlideChange={(swiper) => {
+              setSliderState({
+                isBeginning: swiper.isBeginning,
+                isEnd: swiper.isEnd,
+              })
+            }}
           >
             <SwiperSlide>
-            
               <AccountCard
                 type="CHECKING"
                 balance={125.36}
@@ -63,7 +72,6 @@ export function Accounts() {
               />
             </SwiperSlide>
             <SwiperSlide>
-          
               <AccountCard
                 type="CASH"
                 balance={100}

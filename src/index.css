@@ -8,8 +8,3 @@
     box-sizing: border-box;
 }
 
-:focus {
-    outline: none;
-    border: 1px solid #343A40;
-    trasition: 0.3s;
-}
