@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+::-webkit-scrollbar {
+  width: 4px; /* Largura da barra de rolagem */
+  padding: 2px;
 }
+
+::-webkit-scrollbar-thumb {
+  background: #E9ECEF; /* Cor do fundo da barra de rolagem */
+  border-radius: 4px; /* Borda arredondada */
+}
+
+
 

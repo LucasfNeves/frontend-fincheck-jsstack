@@ -1,5 +1,7 @@
+import { cn } from "../../../../../app/utils/cn.ts";
 import { formatCurrency } from "../../../../../app/utils/formatCurrency.ts";
 import { BankAccountTypeIcon } from "../../../../components/icons/BankAccountTypeIcon";
+import { useAccountController } from "./useAccountsController.ts";
 
 interface AccountCardProps {
   color: string;
@@ -9,6 +11,8 @@ interface AccountCardProps {
 }
 
 export function AccountCard({ balance, color, name, type }: AccountCardProps) {
+  const { areValuesVisible } = useAccountController();
+
   return (
     <div
       className="p-4 bg-white rounded-2xl h-[200px] flex flex-col justify-between items-start border-b-4 border-teal-950"
@@ -21,7 +25,7 @@ export function AccountCard({ balance, color, name, type }: AccountCardProps) {
         </span>
       </div>
       <div className="flex flex-col gap-1">
-        <span>{formatCurrency(balance)}</span>
+        <span className={cn(!areValuesVisible && 'blur-sm')}>{formatCurrency(balance)}</span>
         <small className="text-gray-600 text-sm font-medium traking-[-0.5px]">
           Saldo atual
         </small>
