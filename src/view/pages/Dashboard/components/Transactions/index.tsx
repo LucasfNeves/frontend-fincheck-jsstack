@@ -1,5 +1,3 @@
-import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { TransactionsIcon } from "../../../../components/icons/TransactionsIcon";
 import { FilterIcon } from "../../../../components/icons/FilterIcon";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { MONTHS } from "../../../../../app/config/constants";
@@ -11,10 +9,19 @@ import { cn } from "../../../../../app/utils/cn";
 import { useTransactionsController } from "./useTransactionsController";
 import { Spinner } from "../../../../components/Spinner";
 import emptyStateImage from "./../../../../../assets/images/empty-state.svg";
+import { TransactionsTypeDropdown } from "./TransactionTypeDropdown";
+import { FiltersModal } from "./FiltersModal";
 
 export function Transactions() {
-  const { areValuesVisible, isInitialLoading, trasactions, isLoading } =
-    useTransactionsController();
+  const {
+    areValuesVisible,
+    isInitialLoading,
+    trasactions,
+    isLoading,
+    handleCloseFilterModal,
+    handleOpenFilterModal,
+    isFilterModalOpen,
+  } = useTransactionsController();
 
   const hasTransactions = trasactions.length > 0;
   return (
@@ -25,17 +32,12 @@ export function Transactions() {
         </div>
       ) : (
         <>
+          <FiltersModal open={isFilterModalOpen} onClose={handleCloseFilterModal} />
           <header>
             <div className="flex items-center justify-between w-full">
-              <button className="flex items-center gap-2">
-                <TransactionsIcon />
-                <span className="text-sm text-gray-800 tracking-[-0.5px] font-medium">
-                  Transações
-                </span>
-                <ChevronDownIcon className="text-gray-900" />
-              </button>
+              <TransactionsTypeDropdown />
 
-              <button>
+              <button onClick={handleOpenFilterModal}>
                 <FilterIcon />
               </button>
             </div>
@@ -110,11 +112,11 @@ export function Transactions() {
 
             {isLoading && (
               <div className="flex flex-col items-center justify-center h-full">
-                {isLoading && <Spinner className="w-10 h-10"/>}
+                {isLoading && <Spinner className="w-10 h-10" />}
               </div>
             )}
 
-            {(!hasTransactions && !isLoading) && (
+            {!hasTransactions && !isLoading && (
               <div className="flex flex-col items-center justify-center h-full">
                 <img src={emptyStateImage} alt="Empty State" />
 
