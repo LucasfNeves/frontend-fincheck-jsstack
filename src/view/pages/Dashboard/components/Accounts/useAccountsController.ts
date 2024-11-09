@@ -8,7 +8,7 @@ export function useAccountController() {
 
   const windowWidth = useWindowWidth()
 
-  const {areValuesVisible, toogleValueVisibility} = useDashboard()
+  const {areValuesVisible, toogleValueVisibility, openNewAccountModal} = useDashboard()
 
   const [sliderState, setSliderState] = useState({
     isBeginning: true,
@@ -25,6 +25,7 @@ export function useAccountController() {
     toogleValueVisibility,
     swiperRef,
     isLoading: false,
-    accounts:[]
+    accounts:[],
+    openNewAccountModal
   }
 }  

@@ -7,7 +7,6 @@ interface LoucheScreenProps {
 }
 
 export function LaunchScreen({ isLoading }: LoucheScreenProps) {
-  console.log(isLoading)
   return (
     <Transition
       show={isLoading}

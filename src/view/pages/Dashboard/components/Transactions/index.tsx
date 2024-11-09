@@ -23,6 +23,8 @@ export function Transactions() {
     isFilterModalOpen,
   } = useTransactionsController();
 
+  
+
   const hasTransactions = trasactions.length > 0;
   return (
     <div className="bg-gray-100 rounded-2xl w-full h-full p-10 flex flex-col">
@@ -32,7 +34,10 @@ export function Transactions() {
         </div>
       ) : (
         <>
-          <FiltersModal open={isFilterModalOpen} onClose={handleCloseFilterModal} />
+          <FiltersModal
+            open={isFilterModalOpen}
+            onClose={handleCloseFilterModal}
+          />
           <header>
             <div className="flex items-center justify-between w-full">
               <TransactionsTypeDropdown />
